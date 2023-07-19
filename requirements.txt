@@ -1,0 +1,16 @@
+pip~=22.0.2
+rsa~=4.9
+pyasn1~=0.5.0
+six~=1.16.0
+cachetools~=5.3.1
+certifi~=2023.5.7
+urllib3~=1.26.16
+requests~=2.31.0
+oauthlib~=3.2.2
+idna~=3.4
+setuptools~=59.6.0
+
+sqlalchemy
+psycopg2-binary
+gspread==5.10.0
+gspread-formatting==1.1.2

@@ -1,0 +1,6 @@
+/venv
+docker-compose.yml
+service_account.json
+.env
+/.idea
+/__pycache__/
