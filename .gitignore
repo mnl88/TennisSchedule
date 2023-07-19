@@ -3,4 +3,4 @@ docker-compose.yml
 service_account.json
 .env
 /.idea
-/__pycache__/
+__pycache__
