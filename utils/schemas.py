@@ -1,9 +1,13 @@
+from __future__ import annotations
 from typing import Optional
+
 from datetime import datetime, date
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, constr
 
 
 class User(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     birth_day: str
     ntrp: str
@@ -14,11 +18,10 @@ class User(BaseModel):
     user_name: str
     description: str
 
-    class Config:
-        orm_mode = True
-
 
 class Booking(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     court_id: int
     start_time: datetime
@@ -28,7 +31,5 @@ class Booking(BaseModel):
     additional_member: str
     created_at: datetime
     # user_id: int
-    user: Optional[User]
+    user: Optional[User] = None
 
-    class Config:
-        orm_mode = True

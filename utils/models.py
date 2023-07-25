@@ -40,7 +40,8 @@ class BookingOrm(Base):
     type = Column()
     additional_member = Column()
     created_at = Column()
-    user_id = Column(ForeignKey("users.id"))
+    user_id = Column()
+    # user_id = Column(ForeignKey("users.id"))
 
     def __repr__(self):
         # if self.user_id:

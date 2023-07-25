@@ -10,7 +10,7 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD ["python3", "draw_the_schedule.py"]
+CMD ["python3", "script.py"]
 
 #FROM ubuntu:latest
 #ENTRYPOINT ["top", "-b"]

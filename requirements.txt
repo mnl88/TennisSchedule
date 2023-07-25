@@ -1,17 +1,18 @@
-pip~=22.0.2
+pip==23.2.1
 rsa~=4.9
 pyasn1~=0.5.0
 six~=1.16.0
 cachetools~=5.3.1
-certifi~=2023.5.7
-urllib3~=1.26.16
+certifi==2023.7.22
+urllib3==2.0.4
 requests~=2.31.0
 oauthlib~=3.2.2
 idna~=3.4
 setuptools~=59.6.0
 
-sqlalchemy
+sqlalchemy==2.0.19
 psycopg2-binary
 gspread==5.10.0
 gspread-formatting==1.1.2
 python-dotenv==1.0.0
+pydantic==2.0.3

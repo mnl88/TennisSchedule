@@ -9,13 +9,13 @@ from utils.schemas import User, Booking
 logger = logging.getLogger(__name__)
 
 
-def get_bookings(days_depth: int = 3) -> list[Booking]:
+def get_bookings(days_depth: int = 7) -> list[Booking]:
     booking_list = []
-    for booking_orm in session.scalars(BookingOrm.get_future_bookings(days_depth)):
-        booking = Booking.from_orm(booking_orm)
+    future_bookings = session.scalars(BookingOrm.get_future_bookings(days_depth))
+    for booking_orm in future_bookings:
+        booking = Booking.model_validate(booking_orm)
         user_orm = session.get(UserOrm, booking_orm.user_id)
-        if user_orm:
-            booking.user = User.from_orm(user_orm)
+        booking.user = User.model_validate(user_orm)
         booking_list.append(booking)
     session.close()
     engine.dispose()
