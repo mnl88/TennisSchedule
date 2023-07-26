@@ -230,7 +230,7 @@ def record_the_draw(booking: Booking, start_row: int = 1):
 
 def main() -> None:
     # Глубина в днях
-    days_depth = 14
+    days_depth = 10
 
     basic_rows_count, basic_columns_count = 100, 5
 
