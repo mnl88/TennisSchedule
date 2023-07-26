@@ -15,8 +15,8 @@ class User(BaseModel):
     last_name: str
     tennis_experience: str
     phone_number: str
-    user_name: str
-    description: str
+    user_name: Optional[str]
+    description: Optional[str]
 
 
 class Booking(BaseModel):

@@ -33,12 +33,15 @@ def row_cow_range_to_a1(first_row: int, first_col: int, last_row: int, last_col:
 
 
 def add_cell_value_to_array(row, col, value, array_to_patch: list = None) -> list:
-    if array_to_patch is None:
-        array_to_patch = []
-    array_to_patch.append(
-        {'range': rowcol_to_a1(row, col),
-         'values': [[value], ]
-         })
+    try:
+        if array_to_patch is None:
+            array_to_patch = []
+        array_to_patch.append(
+            {'range': rowcol_to_a1(row, col),
+             'values': [[value], ]
+             })
+    except Exception as err:
+        pass
     return array_to_patch
 
 
@@ -202,9 +205,10 @@ def record_the_draw(booking: Booking, start_row: int = 1):
     user = booking.user
     name = f'{user.first_name.capitalize()} {user.last_name.capitalize()}' if (
             user.first_name and user.last_name) else 'Анонимный пользователь'
-    if user.user_name.startswith('@'):
-        link = f'https://t.me/{user.user_name[1:]}' if user.user_name else 'ссылка на профиль ТГ отсутствует'
-        cell_value = f'=HYPERLINK("{link}"; "{name}")'
+    if user.user_name:
+        if user.user_name.startswith('@'):
+            link = f'https://t.me/{user.user_name[1:]}' if user.user_name else 'ссылка на профиль ТГ отсутствует'
+            cell_value = f'=HYPERLINK("{link}"; "{name}")'
     else:
         cell_value = name
     ntrp = user.ntrp if user.ntrp else 'данные об ntrp отсутствуют'
