@@ -131,7 +131,7 @@ def create_the_schedule(court_dict: dict, wks: gspread.Worksheet, start_row: int
                                     }
                )
 
-    currant_date = datetime.datetime.now()
+    currant_date = datetime.datetime.now() + datetime.timedelta(hours=3)
     dates = [currant_date + datetime.timedelta(days=i) for i in range(depth)]
     wks.update('A' + str(start_row + 2), [[str(i.strftime('%d.%m.%Y')), weekdays[i.weekday()]] for i in dates],
                value_input_option='USER_ENTERED')
