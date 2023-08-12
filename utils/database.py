@@ -9,7 +9,7 @@ engine = create_engine(URL(**DATABASE), echo=False)
 engine.connect()
 
 Session = sessionmaker(bind=engine, expire_on_commit=False)
-session = Session()
+# session = Session()
 
 Base = declarative_base()
 

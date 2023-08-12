@@ -1,7 +1,7 @@
 import logging
 import time
 
-from utils.database import engine, session
+from utils.database import engine, Session
 from utils.models import UserOrm, BookingOrm
 from utils.schemas import User, Booking
 
@@ -11,14 +11,15 @@ logger = logging.getLogger(__name__)
 
 def get_bookings(days_depth: int = 7) -> list[Booking]:
     booking_list = []
-    future_bookings = session.scalars(BookingOrm.get_future_bookings(days_depth))
-    for booking_orm in future_bookings:
-        booking = Booking.model_validate(booking_orm)
-        user_orm = session.get(UserOrm, booking_orm.user_id)
-        booking.user = User.model_validate(user_orm)
-        booking_list.append(booking)
-    session.close()
-    engine.dispose()
+    with Session() as session:
+        future_bookings = session.scalars(BookingOrm.get_future_bookings(days_depth))
+        for booking_orm in future_bookings:
+            booking = Booking.model_validate(booking_orm)
+            user_orm = session.get(UserOrm, booking_orm.user_id)
+            booking.user = User.model_validate(user_orm)
+            booking_list.append(booking)
+        session.close()
+        engine.dispose()
     logger.info(f'Получено записей из БД: {len(booking_list)}шт')
     return booking_list
 
